@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
             title,
             description,
             user_id,
-            imageUrl
+            imageUrl,
         });
         await newPost.save();
         res.status(201).json(newPost);
