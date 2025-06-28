@@ -11,6 +11,15 @@ router.get("/", async (req, res) => {
     }
 });
 
+router.get("/user/:user_id", async (req, res) => {
+    try {
+        const userPosts = await Post.find({ user_id: req.params.user_id }).sort({ createdAt: -1 });
+        res.json(userPosts);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 router.post("/", async (req, res) => {
     try {
         const { title, description, user_id, imageUrl } = req.body;
