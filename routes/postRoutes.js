@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../model/Posts');
 
-// GET all posts
 router.get("/", async (req, res) => {
     try {
         const posts = await Post.find().sort({ createdAt: -1 });
@@ -12,7 +11,6 @@ router.get("/", async (req, res) => {
     }
 });
 
-// POST a new post
 router.post("/", async (req, res) => {
     try {
         const { title, description, user_id, imageUrl } = req.body;
@@ -30,7 +28,6 @@ router.post("/", async (req, res) => {
     }
 });
 
-// DELETE a post
 router.delete('/:id', async (req, res) => {
     try {
         const deletedPost = await Post.findByIdAndDelete(req.params.id);
